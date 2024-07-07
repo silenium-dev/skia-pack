@@ -63,6 +63,7 @@ def main():
         else:
           args += ['extra_cflags=["-stdlib=libc++", "-mmacosx-version-min=10.13"]']
   elif 'linux' == target:
+    args += [ "skia_use_egl=true" ]
     if 'arm64' == machine:
         # TODO: use clang on all targets!
         args += [
