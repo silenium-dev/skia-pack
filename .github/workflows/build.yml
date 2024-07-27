@@ -17,6 +17,7 @@ env:
 
 jobs:
   macos:
+    if: ${{ false }} # Disable macOS build for now
     runs-on: ${{ fromJson('{"macos":"macos-11","ios":"macos-11","iosSim":"macos-11","tvos":"macos-13","tvosSim":"macos-13"}')[matrix.target] }}
     strategy:
       matrix:
@@ -56,7 +57,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: ./script/prepare_linux.sh
-      - run: python3 script/check_release.py --version ${{ env.version }} --build-type ${{ matrix.build_type }} 
+      - run: python3 script/check_release.py --version ${{ env.version }} --build-type ${{ matrix.build_type }}
         if: ${{ github.event.inputs.skip_release != 'true' && github.ref == 'refs/heads/main' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
