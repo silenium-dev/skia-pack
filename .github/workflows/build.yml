@@ -20,7 +20,6 @@ env:
 
 jobs:
   macos:
-    if: ${{ false }} # Disable macOS build for now
     runs-on: ${{ fromJson('{"macos":"macos-13","ios":"macos-13","iosSim":"macos-13","tvos":"macos-13","tvosSim":"macos-13"}')[matrix.target] }}
     strategy:
       matrix:
