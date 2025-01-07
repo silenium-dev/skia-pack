@@ -49,6 +49,7 @@ def main():
       args += ['target_os="ios"']
       if isIosSim:
         args += ['ios_use_simulator=true']
+        args += ['extra_cflags=["-mios-simulator-version-min=12.0"]']
       else:
         args += ['ios_min_target="12.0"']
     else:
@@ -125,7 +126,7 @@ def main():
         'skia_enable_gpu=true',
         'skia_enable_svg=true', # other targets have this set in skia.gni
         'skia_use_expat=true',   # other targets have this set in skia.gni
-        'extra_cflags=["-DSK_SUPPORT_GPU=1", "-DSK_GL", "-DSK_DISABLE_LEGACY_SHADERCONTEXT"]'
+        'extra_cflags=["-DSK_SUPPORT_GPU=1", "-DSK_GL", "-DSK_DISABLE_LEGACY_SHADERCONTEXT", "-sSUPPORT_LONGJMP=wasm"]'
     ]
 
   if 'linux' == host and 'arm64' == host_machine:
